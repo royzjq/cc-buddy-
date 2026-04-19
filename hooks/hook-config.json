@@ -1,0 +1,47 @@
+{
+  "_comment": "Template — drop these entries into your ~/.claude/settings.json under \"hooks\". Replace <CC_BUDDY_PATH> with the absolute path to your clone of this repo (e.g. /Users/alice/code/cc-buddy). The script reads the hook JSON payload from stdin per Claude Code v2 spec.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" session_start" }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" notification" }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" thinking" }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" thinking" }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" stop" }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" session_end" }
+        ]
+      }
+    ]
+  }
+}
