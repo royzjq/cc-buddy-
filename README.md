@@ -1,7 +1,7 @@
 # cc-buddy
 
 <p align="center">
-  <img src="media/screenshot.png" alt="cc-buddy 桌面截图" width="520" />
+  <img src="media/orange_cat-hero.gif" alt="cc-buddy 状态演示" width="320" />
 </p>
 
 **Claude Code 的桌面陪伴宠物。** 一只像素小动物悬浮在你的桌面上，实时跟着 Claude Code 的会话状态变化——它在思考、在等你回答、还是已经做完——你不用盯着终端，余光扫一眼就知道。
