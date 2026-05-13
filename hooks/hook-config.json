@@ -1,5 +1,5 @@
 {
-  "_comment": "Template — drop these entries into your ~/.claude/settings.json under \"hooks\". Replace <CC_BUDDY_PATH> with the absolute path to your clone of this repo (e.g. /Users/alice/code/cc-buddy). The script reads the hook JSON payload from stdin per Claude Code v2 spec.",
+  "_comment": "Template — drop these entries into your ~/.claude/settings.json under \"hooks\". Replace <CC_BUDDY_PATH> with the absolute path to your clone of this repo (e.g. /Users/alice/code/cc-buddy). On Windows, change every \"python3\" to \"python\". The script reads the hook JSON payload from stdin per Claude Code v2 spec.",
   "hooks": {
     "SessionStart": [
       {
@@ -10,6 +10,7 @@
     ],
     "Notification": [
       {
+        "matcher": "permission_prompt",
         "hooks": [
           { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" notification" }
         ]
@@ -24,12 +25,33 @@
     ],
     "PreToolUse": [
       {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" notification" }
+        ]
+      },
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" thinking" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "AskUserQuestion",
         "hooks": [
           { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" thinking" }
         ]
       }
     ],
     "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" stop" }
+        ]
+      }
+    ],
+    "StopFailure": [
       {
         "hooks": [
           { "type": "command", "command": "python3 \"<CC_BUDDY_PATH>/hooks/cc-buddy-hook.py\" stop" }

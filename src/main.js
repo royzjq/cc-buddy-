@@ -131,13 +131,15 @@ startUsagePolling(async () => {
   }
 });
 
-// Demo spawn when no live session connects shortly after boot.
-setTimeout(() => {
-  if (playground.buddies.size === 0) {
-    console.info('[cc-buddy] no live sessions \u2014 spawning demo');
-    dispatch({ type: 'session_start', session_id: 'demo-1' });
-    setTimeout(() => dispatch({ type: 'thinking', session_id: 'demo-1' }), 1800);
-    setTimeout(() => dispatch({ type: 'notification', session_id: 'demo-1' }), 6000);
-    setTimeout(() => dispatch({ type: 'stop', session_id: 'demo-1' }), 11000);
-  }
-}, 1500);
+// Demo spawn when no live session connects shortly after boot. Dev-only.
+if (import.meta.env.DEV) {
+  setTimeout(() => {
+    if (playground.buddies.size === 0) {
+      console.info('[cc-buddy] no live sessions \u2014 spawning demo');
+      dispatch({ type: 'session_start', session_id: 'demo-1' });
+      setTimeout(() => dispatch({ type: 'thinking', session_id: 'demo-1' }), 1800);
+      setTimeout(() => dispatch({ type: 'notification', session_id: 'demo-1' }), 6000);
+      setTimeout(() => dispatch({ type: 'stop', session_id: 'demo-1' }), 11000);
+    }
+  }, 1500);
+}

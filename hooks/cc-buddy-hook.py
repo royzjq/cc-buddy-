@@ -102,12 +102,15 @@ def main() -> int:
     event_type = sys.argv[1]
     payload = read_stdin_payload()
     event = build_event(event_type, payload)
-    message = payload.get("message") or ""
     if event.get("session_id") in (None, "", "unknown"):
         debug_log(f"skip event with no session_id type={event_type}")
         return 0
-    if event_type == "notification" and "waiting for your input" in message.lower():
-        debug_log(f"skip idle notification sid={event.get('session_id')}")
+    # PreToolUse fires for every tool; AskUserQuestion has its own dedicated
+    # entry that emits a 'notification' event, so suppress the catch-all
+    # 'thinking' event for it (otherwise question state is immediately
+    # overwritten by working).
+    if event_type == "thinking" and payload.get("tool_name") == "AskUserQuestion":
+        debug_log(f"skip thinking for AskUserQuestion sid={event.get('session_id')}")
         return 0
     debug_log(
         f"fire {event_type} sid={event.get('session_id')} "
