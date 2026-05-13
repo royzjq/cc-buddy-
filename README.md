@@ -20,6 +20,10 @@
 - 📊 **用量条**：底部显示 5 小时 / 每周用量百分比，直接读 Claude 官方 OAuth usage API
 - 🤫 **「安静的陪伴」哲学**：没有随机闪光 / 爱心、没有 TTS 闲聊、不打扰你写代码
 
+<p align="center">
+  <img src="media/example.png" alt="cc-buddy 桌面效果：小猎犬 + 用量条" width="380" />
+</p>
+
 ---
 
 ## 让 Claude Code 替你安装
