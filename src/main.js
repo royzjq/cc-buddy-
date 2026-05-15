@@ -27,7 +27,7 @@ async function dispatch(e) {
       break;
     case 'stop':
       await ensureBuddy(e);
-      playground.setState(e.session_id, 'done');
+      playground.setState(e.session_id, 'question');
       break;
     case 'done':
       await ensureBuddy(e);
